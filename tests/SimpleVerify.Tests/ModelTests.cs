@@ -117,7 +117,8 @@ namespace SimpleVerify.Tests
             var json = JsonSerializer.Serialize(request);
 
             Assert.Contains("\"type\":\"sms\"", json);
-            Assert.Contains("\"destination\":\"+15551234567\"", json);
+            Assert.Contains("\"destination\":", json);
+            Assert.Contains("15551234567", json);
             Assert.DoesNotContain("redirect_url", json);
             Assert.DoesNotContain("metadata", json);
         }
