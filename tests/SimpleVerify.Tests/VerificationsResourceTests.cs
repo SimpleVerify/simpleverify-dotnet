@@ -176,5 +176,32 @@ namespace SimpleVerify.Tests
             Assert.Equal(System.Net.Http.HttpMethod.Get, handler.LastRequest!.Method);
             Assert.EndsWith("/api/v1/verify/abc-123", handler.LastRequest.RequestUri!.ToString());
         }
+
+        [Fact]
+        public async Task ExchangeMagicLink()
+        {
+            var handler = new MockHttpMessageHandler();
+            handler.AddResponse(@"{
+                ""status"": ""success"",
+                ""data"": {
+                    ""verification_id"": ""magic-456"",
+                    ""type"": ""magic_link"",
+                    ""destination"": ""user@example.com"",
+                    ""metadata"": { ""user_id"": 42 },
+                    ""verified_at"": ""2026-03-25T12:05:00+00:00"",
+                    ""environment"": ""test""
+                }
+            }");
+
+            var client = TestClientFactory.Create(handler);
+            var result = await client.Verifications.ExchangeAsync("magic-456", "exchange-code-123");
+
+            Assert.Equal("magic_link", result.Type);
+            Assert.Equal("user@example.com", result.Destination);
+            Assert.Equal("test", result.Environment);
+            Assert.NotNull(handler.LastRequest);
+            Assert.Equal(System.Net.Http.HttpMethod.Post, handler.LastRequest!.Method);
+            Assert.EndsWith("/api/v1/verify/exchange", handler.LastRequest.RequestUri!.ToString());
+        }
     }
 }

@@ -85,6 +85,7 @@ var verification = await client.Verifications.SendAsync(new SendVerificationRequ
     Type = "magic_link",
     Destination = "user@example.com",
     RedirectUrl = "https://yourapp.com/dashboard",
+    FailureRedirectUrl = "https://yourapp.com/auth/magic-link-result",
 });
 
 // With metadata
@@ -117,6 +118,17 @@ verification.Test?.Token  // 64-char string (magic link)
 ```
 
 In live mode (`vk_live_` key), `verification.Test` is `null`.
+
+If you set `FailureRedirectUrl` on a magic link, failed clicks redirect there with `status` (`invalid`, `expired`, or `already_used`) and `verification_id` query parameters.
+
+Successful magic link clicks redirect with `status=verified`, `verification_id`, and a one-time `exchange_code`. Redeem that code from your backend:
+
+```csharp
+var exchange = await client.Verifications.ExchangeAsync(verificationId, exchangeCode);
+
+exchange.Destination; // verified email address
+exchange.Metadata;    // original metadata
+```
 
 ### Check a Code
 

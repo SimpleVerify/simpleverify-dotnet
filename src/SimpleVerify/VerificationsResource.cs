@@ -30,5 +30,11 @@ namespace SimpleVerify
         {
             return _apiClient.RequestAsync<Verification>(HttpMethod.Get, $"/api/v1/verify/{verificationId}", cancellationToken: cancellationToken);
         }
+
+        public Task<MagicLinkExchange> ExchangeAsync(string verificationId, string exchangeCode, CancellationToken cancellationToken = default)
+        {
+            var body = new { verification_id = verificationId, exchange_code = exchangeCode };
+            return _apiClient.RequestAsync<MagicLinkExchange>(HttpMethod.Post, "/api/v1/verify/exchange", body, cancellationToken);
+        }
     }
 }

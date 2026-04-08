@@ -15,6 +15,10 @@ namespace SimpleVerify.Models
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? RedirectUrl { get; set; }
 
+        [JsonPropertyName("failure_redirect_url")]
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? FailureRedirectUrl { get; set; }
+
         [JsonPropertyName("metadata")]
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public Dictionary<string, object>? Metadata { get; set; }
