@@ -8,6 +8,7 @@
     <Description>Official .NET client library for the SimpleVerify API - developer-first verification alerts (SMS, email, magic link)</Description>
     <Authors>SimpleVerify</Authors>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageProjectUrl>https://simpleverify.io</PackageProjectUrl>
     <RepositoryUrl>https://github.com/simpleverify/simpleverify-dotnet</RepositoryUrl>
     <PackageTags>simpleverify;verification;sms;email;magic-link;otp;2fa</PackageTags>
@@ -19,6 +20,10 @@
 
   <ItemGroup>
     <PackageReference Include="System.Text.Json" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>
