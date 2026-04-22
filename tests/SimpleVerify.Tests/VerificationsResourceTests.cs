@@ -42,7 +42,7 @@ namespace SimpleVerify.Tests
 
             Assert.NotNull(handler.LastRequest);
             Assert.Equal(System.Net.Http.HttpMethod.Post, handler.LastRequest!.Method);
-            Assert.EndsWith("/api/v1/verify/send", handler.LastRequest.RequestUri!.ToString());
+            Assert.EndsWith("/v1/verify/send", handler.LastRequest.RequestUri!.ToString());
         }
 
         [Fact]
@@ -127,7 +127,7 @@ namespace SimpleVerify.Tests
 
             Assert.NotNull(handler.LastRequest);
             Assert.Equal(System.Net.Http.HttpMethod.Post, handler.LastRequest!.Method);
-            Assert.EndsWith("/api/v1/verify/check", handler.LastRequest.RequestUri!.ToString());
+            Assert.EndsWith("/v1/verify/check", handler.LastRequest.RequestUri!.ToString());
         }
 
         [Fact]
@@ -174,7 +174,7 @@ namespace SimpleVerify.Tests
 
             Assert.NotNull(handler.LastRequest);
             Assert.Equal(System.Net.Http.HttpMethod.Get, handler.LastRequest!.Method);
-            Assert.EndsWith("/api/v1/verify/abc-123", handler.LastRequest.RequestUri!.ToString());
+            Assert.EndsWith("/v1/verify/abc-123", handler.LastRequest.RequestUri!.ToString());
         }
 
         [Fact]
@@ -201,7 +201,7 @@ namespace SimpleVerify.Tests
             Assert.Equal("test", result.Environment);
             Assert.NotNull(handler.LastRequest);
             Assert.Equal(System.Net.Http.HttpMethod.Post, handler.LastRequest!.Method);
-            Assert.EndsWith("/api/v1/verify/exchange", handler.LastRequest.RequestUri!.ToString());
+            Assert.EndsWith("/v1/verify/exchange", handler.LastRequest.RequestUri!.ToString());
         }
     }
 }
